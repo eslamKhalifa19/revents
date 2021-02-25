@@ -1,11 +1,11 @@
 import React from "react";
 
-function App() {
+import NavBar from "../../features/events/nav/NavBar";
+
+export default function App() {
   return (
-    <div className="App">
-      <h1>REVENTS</h1>
-    </div>
+    <>
+      <NavBar />
+    </>
   );
 }
-
-export default App;
