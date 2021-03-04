@@ -7,6 +7,7 @@ export default function EventForm({
   setEvents,
   createEvent,
   selectedEvent,
+  updateEvent,
 }) {
   const initialValues = selectedEvent ?? {
     title: "",
@@ -20,13 +21,15 @@ export default function EventForm({
   const [values, setValues] = useState(initialValues);
 
   function handleFormSubmit() {
-    createEvent({
-      ...values,
-      id: cuid(),
-      hostedBy: "Bob",
-      attendees: [],
-      hostPhotoURL: "/assets/user.png",
-    });
+    selectedEvent
+      ? updateEvent({ ...selectedEvent, ...values })
+      : createEvent({
+          ...values,
+          id: cuid(),
+          hostedBy: "Bob",
+          attendees: [],
+          hostPhotoURL: "/assets/user.png",
+        });
     setFormOpen(false);
   }
 
