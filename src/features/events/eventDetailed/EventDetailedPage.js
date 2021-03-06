@@ -1,7 +1,20 @@
 import React from "react";
-
-const EventDetailedPage = () => {
-  return <h1>EventDetailedPage</h1>;
-};
-
-export default EventDetailedPage;
+import { Grid } from "semantic-ui-react";
+import EventDetailedHeader from "./EventDetailedHeader";
+import EventDetailedInfo from "./EventDetailedInfo";
+import EventDetailedChat from "./EventDetailedChat";
+import EventDetailedSidebar from "./EventDeatiledSidebar";
+export default function EventDetailedPage() {
+  return (
+    <Grid>
+      <Grid.Column width={10}>
+        <EventDetailedHeader />
+        <EventDetailedInfo />
+        <EventDetailedChat />
+      </Grid.Column>
+      <Grid.Column width={6}>
+        <EventDetailedSidebar />
+      </Grid.Column>
+    </Grid>
+  );
+}
