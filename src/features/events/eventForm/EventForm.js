@@ -1,6 +1,7 @@
-import cuid from "cuid";
 import React, { useState } from "react";
 import { Segment, Header, Form, Button } from "semantic-ui-react";
+import cuid from "cuid";
+import { Link } from "react-router-dom";
 
 export default function EventForm({
   setFormOpen,
@@ -11,7 +12,7 @@ export default function EventForm({
 }) {
   const initialValues = selectedEvent ?? {
     title: "",
-    catagory: "",
+    category: "",
     description: "",
     city: "",
     venue: "",
@@ -40,65 +41,66 @@ export default function EventForm({
 
   return (
     <Segment clearing>
-      <Header content="Create new event" />
+      <Header content={selectedEvent ? "Edit the event" : "Create new event"} />
       <Form onSubmit={handleFormSubmit}>
         <Form.Field>
           <input
             type="text"
             placeholder="Event title"
+            name="title"
             value={values.title}
             onChange={(e) => handleInputChange(e)}
-            name="title"
           />
         </Form.Field>
         <Form.Field>
           <input
             type="text"
             placeholder="Category"
-            value={values.catagory}
+            name="category"
+            value={values.category}
             onChange={(e) => handleInputChange(e)}
-            name="catagory"
           />
         </Form.Field>
         <Form.Field>
           <input
             type="text"
             placeholder="Description"
+            name="description"
             value={values.description}
             onChange={(e) => handleInputChange(e)}
-            name="description"
           />
         </Form.Field>
         <Form.Field>
           <input
             type="text"
             placeholder="City"
+            name="city"
             value={values.city}
             onChange={(e) => handleInputChange(e)}
-            name="city"
           />
         </Form.Field>
         <Form.Field>
           <input
             type="text"
             placeholder="Venue"
+            name="venue"
             value={values.venue}
             onChange={(e) => handleInputChange(e)}
-            name="venue"
           />
         </Form.Field>
         <Form.Field>
           <input
             type="date"
             placeholder="Date"
+            name="date"
             value={values.date}
             onChange={(e) => handleInputChange(e)}
-            name="date"
           />
         </Form.Field>
         <Button type="submit" floated="right" positive content="Submit" />
         <Button
-          onClick={() => setFormOpen(false)}
+          as={Link}
+          to="/events"
           type="submit"
           floated="right"
           content="Cancel"
