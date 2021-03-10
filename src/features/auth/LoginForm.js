@@ -1,11 +1,16 @@
 import React from "react";
-import ModalWrapper from "../../app/common/modals/modalWrapper";
+import ModalWrapper from "../../app/common/modals/ModalWrapper";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Formik } from "formik";
-import { Button, Form } from "semantic-ui-react";
-import TextInput from "../../app/common/form/TextInput";
+import MyTextInput from "../../app/common/form/MyTextInput";
+import { Button } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
+import { signInUser } from "./authActions";
+import { closeModal } from "../../app/common/modals/modalReducer";
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+
   return (
     <ModalWrapper size="mini" header="Sign in to Re-vents">
       <Formik
@@ -14,14 +19,20 @@ export default function LoginForm() {
           email: Yup.string().required().email(),
           password: Yup.string().required(),
         })}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={(values, { setSubmitting }) => {
+          dispatch(signInUser(values));
+          setSubmitting(false);
+          dispatch(closeModal());
         }}
       >
         {({ isSubmitting, isValid, dirty }) => (
           <Form className="ui form">
-            <TextInput name="email" placeholder="Email Address" />
-            <TextInput name="password" placeholder="Password" type="password" />
+            <MyTextInput name="email" placeholder="Email Address" />
+            <MyTextInput
+              name="password"
+              placeholder="Password"
+              type="password"
+            />
             <Button
               loading={isSubmitting}
               disabled={!isValid || !dirty || isSubmitting}
