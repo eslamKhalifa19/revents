@@ -6,11 +6,13 @@ import { Route, useLocation } from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
 import EventDetailedPage from "../../features/events/eventDetailed/EventDetailedPage";
 import EventForm from "../../features/events/eventForm/EventForm";
+import ModalManger from "../common/modals/modalManger";
 
 export default function App() {
   const { key } = useLocation();
   return (
     <>
+      <ModalManger />
       <Route exact path="/" component={HomePage} />
       <Route
         path={"/(.+)"}
