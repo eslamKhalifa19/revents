@@ -10,6 +10,7 @@ import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import SelectInput from "../../../app/common/form/SelectInput";
 import { categoryData } from "../../../app/api/categoryOptions";
+import DateInput from "../../../app/common/form/DateInput";
 export default function EventForm({ match, history }) {
   const dispatch = useDispatch();
   const selectedEvent = useSelector((state) =>
@@ -66,7 +67,14 @@ export default function EventForm({ match, history }) {
 
           <TextInput name="city" placeholder="City" />
           <TextInput name="venue" placeholder="Venue" />
-          <TextInput name="date" placeholder="Event date" type="date" />
+          <DateInput
+            name="date"
+            placeholderText="Event date"
+            timeFormat="HH:mm"
+            showTimeSelect
+            timeCaption="time"
+            dateFormat="MMM d, yyy h:mm a"
+          />
 
           <Button type="submit" floated="right" positive content="Submit" />
           <Button
