@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createEvent, updateEvent } from "../eventActions";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import TextInput from "../../../app/common/form/TextInput";
 export default function EventForm({ match, history }) {
   const dispatch = useDispatch();
   const selectedEvent = useSelector((state) =>
@@ -47,13 +48,7 @@ export default function EventForm({ match, history }) {
         onSubmit={(values) => console.log(values)}
       >
         <Form className="ui form">
-          <FormField>
-            <Field name="title" placeholder="Event title" />
-            <ErrorMessage
-              name="title"
-              render={(error) => <Label basic color="red" content={error} />}
-            />
-          </FormField>
+          <TextInput name="title" placeholder="Event title" />
           <FormField>
             <Field name="category" placeholder="Category" />
           </FormField>
