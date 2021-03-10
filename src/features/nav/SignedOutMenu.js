@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Menu, Button } from "semantic-ui-react";
-import { openModal } from "../../app/common/modals/modalReducer";
+import { openModal } from "../../app/common/modals/ModalReducer";
 
 export default function SignedOutMenu({ setAuthenticated }) {
   const dispatch = useDispatch();

@@ -6,7 +6,7 @@ import TextInput from "../../app/common/form/TextInput";
 import { Button } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 import { signInUser } from "./authActions";
-import { closeModal } from "../../app/common/modals/modalReducer";
+import { closeModal } from "../../app/common/modals/ModalReducer";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
