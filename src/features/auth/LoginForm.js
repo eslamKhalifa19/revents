@@ -2,7 +2,7 @@ import React from "react";
 import ModalWrapper from "../../app/common/modals/ModalWrapper";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import MyTextInput from "../../app/common/form/MyTextInput";
+import TextInput from "../../app/common/form/TextInput";
 import { Button } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 import { signInUser } from "./authActions";
@@ -27,12 +27,8 @@ export default function LoginForm() {
       >
         {({ isSubmitting, isValid, dirty }) => (
           <Form className="ui form">
-            <MyTextInput name="email" placeholder="Email Address" />
-            <MyTextInput
-              name="password"
-              placeholder="Password"
-              type="password"
-            />
+            <TextInput name="email" placeholder="Email Address" />
+            <TextInput name="password" placeholder="Password" type="password" />
             <Button
               loading={isSubmitting}
               disabled={!isValid || !dirty || isSubmitting}
