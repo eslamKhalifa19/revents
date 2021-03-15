@@ -9,20 +9,29 @@ import {
   getEventsFromFirestore,
 } from "../../../app/firestore/firestoreService";
 import { listenToEvents } from "../eventActions";
+import {
+  asyncActionsError,
+  asyncActionsFinish,
+  asyncActionsStart,
+} from "../../../app/async/asyncReducer";
 export default function EventDashboard() {
   const dispatch = useDispatch();
   const { events } = useSelector((state) => state.event);
   const { loading } = useSelector((state) => state.async);
 
   useEffect(() => {
+    dispatch(asyncActionsStart());
     const unsubscribe = getEventsFromFirestore({
-      next: (snapshot) =>
+      next: (snapshot) => {
         dispatch(
           listenToEvents(
             snapshot.docs.map((docSnapshot) => dataFromSnapshot(docSnapshot))
           )
-        ),
-      error: (error) => console.log(error),
+        );
+        dispatch(asyncActionsFinish());
+      },
+      error: (error) => dispatch(asyncActionsError(error)),
+      complete: () => console.log("YOu will never see this message"),
     });
     return unsubscribe;
   }, [dispatch]);
