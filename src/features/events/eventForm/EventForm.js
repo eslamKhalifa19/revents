@@ -1,9 +1,8 @@
 import React from "react";
 import { Segment, Header, Button } from "semantic-ui-react";
-import cuid from "cuid";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createEvent, listenToEvents, updateEvent } from "../eventActions";
+import { listenToEvents } from "../eventActions";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TextInput from "../../../app/common/form/TextInput";
