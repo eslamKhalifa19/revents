@@ -12,6 +12,7 @@ import ErrorComponent from "../common/error/ErrorComponent";
 
 export default function App() {
   const { key } = useLocation();
+
   return (
     <>
       <ModalManager />
