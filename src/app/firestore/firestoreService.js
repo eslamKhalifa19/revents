@@ -23,3 +23,7 @@ export function dataFromSnapshot(snapshot) {
 export function listenToEventsFromFirestore() {
   return db.collection("events");
 }
+
+export function listenToEventFromFirestore(eventId) {
+  return db.collection("events").doc(eventId);
+}
