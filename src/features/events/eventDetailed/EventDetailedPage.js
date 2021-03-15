@@ -6,26 +6,28 @@ import EventDetailedChat from "./EventDetailedChat";
 import EventDetailedSidebar from "./EventDetailedSidebar";
 import { useDispatch, useSelector } from "react-redux";
 import useFirestoreDoc from "../../../app/hooks/useFirestoreDoc";
-import {
-  listenToEventFromFirestore,
-  listenToEventsFromFirestore,
-} from "../../../app/firestore/firestoreService";
+import { listenToEventFromFirestore } from "../../../app/firestore/firestoreService";
 import Loading from "../../../app/layout/Loading";
+import { Redirect } from "react-router";
+import { listenToEvents } from "../eventActions";
 export default function EventDetailedPage({ match }) {
   const dispatch = useDispatch();
   const event = useSelector((state) =>
     state.event.events.find((e) => e.id === match.params.id)
   );
 
-  const { loading } = useSelector((state) => state.async);
+  const { loading, error } = useSelector((state) => state.async);
 
   useFirestoreDoc({
     query: () => listenToEventFromFirestore(match.params.id),
-    data: (event) => dispatch(listenToEventsFromFirestore([event])),
+    data: (event) => dispatch(listenToEvents([event])),
     dep: [match.params.id, dispatch],
   });
 
-  if (loading || !event) return <Loading content="Loading event ..." />;
+  if (loading || (!event && error))
+    return <Loading content="Loading event ..." />;
+
+  if (error) return <Redirect to="/error" />;
   return (
     <Grid>
       <Grid.Column width={10}>
