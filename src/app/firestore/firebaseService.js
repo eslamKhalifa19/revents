@@ -9,3 +9,16 @@ export function signInWithEmail(creds) {
 export function signOutFirebase() {
   return firebase.auth().signOut();
 }
+
+export async function registerInFirebase(creds) {
+  try {
+    const result = await firebase
+      .auth()
+      .createUserWithEmailAndPassword(creds.email, creds.password);
+    return await result.user.updateProfile({
+      displayName: creds.displayName,
+    });
+  } catch (error) {
+    throw error;
+  }
+}
