@@ -5,3 +5,7 @@ export function signInWithEmail(creds) {
     .auth()
     .signInWithEmailAndPassword(creds.email, creds.password);
 }
+
+export function signOutFirebase() {
+  return firebase.auth().signOut();
+}
