@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button, Form, Header, Label, Segment } from "semantic-ui-react";
 import * as Yup from "yup";
 import TextInput from "../../app/common/form/TextInput";
+import { updateUserPassword } from "../../app/firestore/firebaseService";
 export default function AccountPage() {
   const { currentUser } = useSelector((state) => state.auth);
   return (
@@ -23,8 +24,14 @@ export default function AccountPage() {
                 "Passwords do not match"
               ),
             })}
-            onSubmit={(values) => {
-              console.log(values);
+            onSubmit={async (values, { setSubmitting, setErrors }) => {
+              try {
+                await updateUserPassword(values);
+              } catch (error) {
+                setErrors({ auth: error.message });
+              } finally {
+                setSubmitting(false);
+              }
             }}
           >
             {({ errors, isSubmitting, isValid, dirty }) => (
@@ -48,8 +55,10 @@ export default function AccountPage() {
                   />
                 )}
                 <Button
+                  style={{ display: "block" }}
                   type="submit"
                   disabled={!isValid || isSubmitting || !dirty}
+                  loading={isSubmitting}
                   size="large"
                   positive
                   content="Update password"
