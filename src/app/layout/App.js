@@ -10,9 +10,14 @@ import ModalManager from "../common/modals/ModalManager";
 import { ToastContainer } from "react-toastify";
 import ErrorComponent from "../common/error/ErrorComponent";
 import AccountPage from "../../features/auth/AccountPage";
+import { useSelector } from "react-redux";
+import Loading from "./Loading";
 
 export default function App() {
   const { key } = useLocation();
+  const { initialized } = useSelector((state) => state.async);
+
+  if (!initialized) return <Loading content="Loading app..." />;
 
   return (
     <>
