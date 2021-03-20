@@ -102,7 +102,6 @@ export default function EventForm({ match, history }) {
             <Header sub color="teal" content="Event Location Details" />
             <TextInput name="city" placeholder="City" />
             <TextInput name="venue" placeholder="Venue" />
-
             <DateInput
               name="date"
               placeholderText="Event date"
