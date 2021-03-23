@@ -40,7 +40,6 @@ export default function App() {
               />
               <Route path="/account" component={AccountPage} />
               <Route path="/profile/:id" component={ProfilePage} />
-
               <Route path="/error" component={ErrorComponent} />
             </Container>
           </>

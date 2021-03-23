@@ -1,11 +1,12 @@
-import { Formik } from "formik";
 import React from "react";
-import { Button, Form } from "semantic-ui-react";
-import * as Yup from "yup";
+import { Formik, Form } from "formik";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
-import { updateUserProfile } from "../../../app/firestore/firestoreService";
+import { Button } from "semantic-ui-react";
+import * as Yup from "yup";
 import { toast } from "react-toastify";
+import { updateUserProfile } from "../../../app/firestore/firestoreService";
+
 export default function ProfileForm({ profile }) {
   return (
     <Formik
@@ -20,7 +21,7 @@ export default function ProfileForm({ profile }) {
         try {
           await updateUserProfile(values);
         } catch (error) {
-          toast.error(error.meesage);
+          toast.error(error.message);
         } finally {
           setSubmitting(false);
         }
