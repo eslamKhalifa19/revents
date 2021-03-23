@@ -4,7 +4,7 @@ import { Button, Grid, Header, Tab } from "semantic-ui-react";
 import ProfileForm from "./ProfileForm";
 
 export default function AboutTab({ profile, isCurrentUser }) {
-  const { editMode, setEditMode } = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   return (
     <Tab.Pane>
@@ -32,7 +32,7 @@ export default function AboutTab({ profile, isCurrentUser }) {
               {" "}
               <div style={{ marginBottom: 10 }}>
                 <strong>
-                  Member since : {format(profile.createAt, "dd MMM yyyy")}
+                  Member since : {format(profile.createdAt, "dd MMM yyyy")}
                 </strong>
                 <div>{profile.description || null}</div>
               </div>{" "}
