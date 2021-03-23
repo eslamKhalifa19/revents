@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Grid, Header, Tab } from "semantic-ui-react";
 import ProfileForm from "./ProfileForm";
 
-export default function AboutTab({ profile }) {
+export default function AboutTab({ profile, isCurrentUser }) {
   const { editMode, setEditMode } = useState(false);
   console.log(profile);
 
@@ -16,12 +16,14 @@ export default function AboutTab({ profile }) {
             icon="user"
             content={`About ${profile.displayName}`}
           />
-          <Button
-            onClick={() => setEditMode(!editMode)}
-            floated="right"
-            basic
-            content={editMode ? "Cancel" : "Edit"}
-          />
+          {isCurrentUser && (
+            <Button
+              onClick={() => setEditMode(!editMode)}
+              floated="right"
+              basic
+              content={editMode ? "Cancel" : "Edit"}
+            />
+          )}
         </Grid.Column>
         <Grid.Column width={16}>
           {editMode ? (
