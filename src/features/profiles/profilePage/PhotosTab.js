@@ -21,7 +21,7 @@ export default function PhototsTab({ profile, isCurrentUser }) {
         </Grid.Column>
         <Grid.Column width={16}>
           {editMode ? (
-            <PhotoUploadWidget />
+            <PhotoUploadWidget setEditMode={setEditMode} />
           ) : (
             <Card.Group>
               <Card>
