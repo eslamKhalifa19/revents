@@ -1,7 +1,7 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
 import AboutTab from "./AboutTab";
-import PhototsTab from "./PhotosTab";
+import PhotosTab from "./PhotosTab";
 
 export default function ProfileContent({ profile, isCurrentUser }) {
   const panes = [
@@ -14,7 +14,7 @@ export default function ProfileContent({ profile, isCurrentUser }) {
     {
       menuItem: "Photos",
       render: () => (
-        <PhototsTab profile={profile} isCurrentUser={isCurrentUser} />
+        <PhotosTab profile={profile} isCurrentUser={isCurrentUser} />
       ),
     },
     { menuItem: "Events", render: () => <Tab.Pane>Events</Tab.Pane> },

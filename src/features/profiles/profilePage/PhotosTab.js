@@ -37,7 +37,7 @@ export default function PhototsTab({ profile, isCurrentUser }) {
   }
 
   async function handleDeletePhoto(photo, target) {
-    setUpdating({ isDeleting: true, target });
+    setDeleting({ isDeleting: true, target });
     try {
       await deleteFromFirebaseStorage(photo.name);
       await deletePhotoFromCollection(photo.id);
@@ -52,7 +52,7 @@ export default function PhototsTab({ profile, isCurrentUser }) {
     <Tab.Pane loading={loading}>
       <Grid>
         <Grid.Column width={16}>
-          <Header floated="left" icon="user" content={`Photots`} />
+          <Header floated="left" icon="user" content={`Photos`} />
           {isCurrentUser && (
             <Button
               onClick={() => setEditMode(!editMode)}

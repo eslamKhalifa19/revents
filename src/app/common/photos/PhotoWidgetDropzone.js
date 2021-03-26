@@ -5,7 +5,7 @@ import { Header, Icon } from "semantic-ui-react";
 export default function PhotoWidgetDropzone({ setFiles }) {
   const dropzoneStyles = {
     border: "dashed 3px #eee",
-    borderRaduis: "5%",
+    borderRadius: "5%",
     paddingTop: "30px",
     textAlign: "center",
   };
